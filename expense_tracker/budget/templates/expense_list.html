@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}My Expenses{% endblock %}
+
+{% block content %}
+<h1>My Expenses</h1>
+
+<div>
+  <h2>Total Expenses: ${{ total_expenses }}</h2>
+  <h2>Monthly Expenses: ${{ monthly_expenses }}</h2>
+</div>
+
+<div>
+  <a href="{% url 'add_expense' %}" class="btn btn-primary">Add Expense</a>
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Amount</th>
+      <th>Category</th>
+      <th>Date</th>
+      <th>Description</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for expense in expenses %}
+    <tr>
+      <td>${{ expense.amount }}</td>
+      <td>{{ expense.category }}</td>
+      <td>{{ expense.date }}</td>
+      <td>{{ expense.description }}</td>
+      <td>
+        <a href="{% url 'edit_expense' expense.id %}" class="btn btn-warning btn-sm">Edit</a>
+        <form action="{% url 'delete_expense' expense.id %}" method="POST" style="display:inline;">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+        </form>
+      </td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="5">No expenses found.</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<!-- Chart for expenses by category -->
+<canvas id="expensesChart" width="400" height="200"></canvas>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const ctx = document.getElementById('expensesChart').getContext('2d');
+    const data = {
+      labels: [{% for entry in expenses_by_category %}'{{ entry.category }}'{% if not forloop.last %}, {% endif %} {% endfor %}],
+    datasets: [{
+      label: 'Expenses by Category',
+      data: [{% for entry in expenses_by_category %}{{ entry.total }}{% if not forloop.last %}, {% endif %} {% endfor %}],
+  backgroundColor: 'rgba(75, 192, 192, 0.2)',
+    borderColor: 'rgba(75, 192, 192, 1)',
+      borderWidth: 1
+        }]
+    };
+  const myChart = new Chart(ctx, {
+    type: 'bar',
+    data: data,
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+});
+
+</script>
+{% endblock %}

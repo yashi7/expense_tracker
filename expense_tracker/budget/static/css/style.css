@@ -1,0 +1,66 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #F8F9FA; /* Light background color */
+}
+
+.container {
+    background-color: #FFFFFF; /* White background for the container */
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #d32263; /* Primary color for headings */
+    margin-bottom: 30px;
+}
+
+.table {
+    margin-top: 20px;
+}
+
+.table th {
+    background-color: #d32263;
+    color: #FFFFFF; /* White text for thead */
+}
+
+.table tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+.table tbody tr:hover {
+    background-color: #d32263; /* Light gray on hover */
+}
+
+.btn {
+    border-radius: 25px; /* Rounded buttons */
+    padding: 10px 20px;
+    margin-right: 10px; /* Spacing between buttons */
+}
+
+.btn-primary {
+    background-color: #d32263;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #d32263; /* Darker shade on hover */
+}
+
+.btn-success {
+    background-color: #d32263;
+    border: none;
+}
+
+.btn-success:hover {
+    background-color: #d32263; /* Darker shade on hover */
+}
+
+.btn-warning {
+    background-color: #d32263;
+    border: none;
+}
+
+.btn-warning:hover {
+    background-color: #d32263; /* Darker shade on hover */
+}

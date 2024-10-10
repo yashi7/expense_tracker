@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}  <!-- Load the static files library -->
+
+{% block content %}
+<div class="container text-center" style="background-color: #f5f5f5; padding: 50px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+    <h1 style="color: #000000; font-weight: bold;">Welcome to the Expense Tracker</h1>
+    <p style="color: #d32263; font-size: 1.2em; margin-bottom: 30px;">Your personal finance manager</p>
+    
+    <!-- Decorative image -->
+    <img src="{% static 'finance.jpeg' %}" alt="Finance" class="img-fluid" style="max-width: 100%; height: auto; border-radius: 10px; margin-bottom: 30px;">
+
+    <div class="btn-group" role="group" aria-label="Basic example">
+        <a href="{% url 'expense_list' %}" class="btn btn-lg" style="background-color: #d32263; color: rgb(3, 2, 2); border: none; margin-right: 10px;">View My Expenses</a>
+        <a href="{% url 'login' %}" class="btn btn-lg" style="background-color: #d32263; color: rgb(4, 3, 3); border: none; margin-right: 10px;">Login</a>
+        <a href="{% url 'register' %}" class="btn btn-lg" style="background-color: #d32263; color: rgb(0, 0, 0); border: none;">Sign Up</a>
+    </div>
+    
+    <!-- Additional content section -->
+    <div class="mt-5" style="border-top: 1px solid #d32263; padding-top: 20px; color: #000000;">
+        <h3 style="font-weight: bold;">Why Use Expense Tracker?</h3>
+        <ul class="list-unstyled">
+            <li>📊 Track your spending effectively</li>
+            <li>💰 Set and manage your budget limits</li>
+            <li>📅 Analyze expenses over time</li>
+            <li>🔒 Secure and private access to your data</li>
+        </ul>
+    </div>
+</div>
+{% endblock %}

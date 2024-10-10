@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Expense{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Add Expense</h1>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}  <!-- Use the Django form to render inputs -->
+            <button type="submit">Add Expense</button>
+        </form>
+        <a href="{% url 'expense_list' %}">Back to Expense List</a>
+    </div>
+{% endblock %}
